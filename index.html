@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Events!</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+  <nav class="nav-bar bg-dark">
+    <div class="nav-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      "
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="jumbotron">
+
+        <div class="welcome">
+          
+          <form>
+
+            <label for="name">Enter Your First Name</label>
+            <input type="text" name="name">
+            <button class="welcom-button" onclick="doWelcome();">Play Now</button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+
+
+      <div class="main-screen">
+        <p class="instructions">Choose Rock, Paper or Scissors by using the keys (r, p, s) </p>
+        <div class="choices">
+          <div class="player" id="player_guess_display"></div>
+          <div class="computer" id="computer_guess_dispaly"></div>
+        </div>
+        <div class="scores">
+          <div class="score player">Player Wins: <span id="player_wins_dispaly">0</span></div>
+          <div class="score computer">Computer Wins: <span id="computer_wins_display">0</span></div>
+          <div>Ties: <span id="ties_display">0</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <script>
+    var choices = ["r", "p", "s"],
+      computerScore = 0,
+      playersScore = 0,
+      playerGfx,
+      computerGfx,
+      ties = 0;
+
+    rockImg = '<img src="images/rock.jpg" width="150">';
+    paperImg = '<img src="images/paper.jpg" width="150">';
+    scissorImg = '<img src="images/scissors.jpg" width="150">';
+    choiceSprite = [rockImg, paperImg, scissorImg]
+
+    document.onkeyup = function (event) {
+
+      var playersGuess, computerGuess;
+
+      playersGuess = event.key;
+      playerGfx = choiceSprite[choices.indexOf(playersGuess)];
+      computerGuess = choices[Math.floor(Math.random() * choices.length)];
+      computerGfx = choiceSprite[choices.indexOf(computerGuess)];
+
+      if (isPlayerGuessValid(playersGuess)) {
+
+        player_guess_display.innerHTML = playerGfx;
+        computer_guess_dispaly.innerHTML = computerGfx
+
+
+        if (playersGuess == computerGuess) {
+
+          ties_display.textContent = ++ties;
+
+        } else if (playersGuess = 'p' && computerGuess == 'r') {
+
+          playerWins();
+
+        } else if (playersGuess = 'r' && computerGuess == 's') {
+
+          playerWins();
+
+        } else {
+
+          computerWins();
+
+        }
+
+      }
+
+    }
+
+    function playerWins() {
+
+      player_wins_dispaly.textContent = ++playersScore;
+
+    }
+
+    function computerWins() {
+
+      computer_wins_display.textContent = ++computerScore;
+
+    }
+
+    function isPlayerGuessValid(guess) {
+
+      return (guess == "r" || guess == 's' || guess == 'p');
+    }
+
+    function doWelcome() {
+
+
+    }
+  </script>
+</body>
+
+</html>
